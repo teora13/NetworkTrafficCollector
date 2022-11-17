@@ -1,4 +1,6 @@
 import pyshark
+import csv
+from csv import writer
 
 cap = pyshark.LiveCapture(interface='\\Device\\NPF_{device}')
 headers = ['Protocol type', 'Source address', 'Source port', 'Destination address', 'Destination port', 'Time']
