@@ -12,7 +12,12 @@ with open("data.csv", 'w') as file:
 
 for packet in cap.sniff_continuously(packet_count=1):
     try:
-	packet_data = packet.transport_layer, packet[packet.transport_layer].srcport
+	packet_data = packet.transport_layer,\
+			packet.ip.src, \
+			packet[packet.transport_layer].srcport,\
+			packet.ip.dst, \
+			packet[packet.transport_layer].dstport, \
+			str(packet.sniff_time)
         print('Protocol type:', packet.transport_layer, 'Source port:', packet[packet.transport_layer].srcport)
     except AttributeError:
 		pass
