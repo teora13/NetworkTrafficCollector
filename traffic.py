@@ -11,4 +11,7 @@ with open("data.csv", 'w') as file:
     dw.writeheader()
 
 for packet in cap.sniff_continuously(packet_count=1):
-     print('Protocol type:', packet.transport_layer, 'Source port:', packet[packet.transport_layer].srcport)
+    try:
+        print('Protocol type:', packet.transport_layer, 'Source port:', packet[packet.transport_layer].srcport)
+    except AttributeError:
+		pass
