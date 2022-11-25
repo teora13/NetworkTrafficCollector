@@ -10,14 +10,21 @@ with open("data.csv", 'w') as file:
                         fieldnames=headers)
     dw.writeheader()
 
-for packet in cap.sniff_continuously(packet_count=1):
-    try:
-	packet_data = packet.transport_layer,\
-			packet.ip.src, \
-			packet[packet.transport_layer].srcport,\
-			packet.ip.dst, \
-			packet[packet.transport_layer].dstport, \
-			str(packet.sniff_time)
-        print('Protocol type:', packet.transport_layer, 'Source port:', packet[packet.transport_layer].srcport)
-    except AttributeError:
+for packet in cap.sniff_continuously():
+	try:
+		if packet.transport_layer == None:
+			pass
+		else:
+			packet_data = packet.transport_layer,\
+				      packet.ip.src, \
+				      packet[packet.transport_layer].srcport,\
+				      packet.ip.dst, \
+				      packet[packet.transport_layer].dstport, \
+				      str(packet.sniff_time)
+			with open('data.csv', 'a', newline='') as f_object:
+				writer_object = writer(f_object)
+				writer_object.writerow(packet_data)
+			print(packet_data)
+	except AttributeError:
 		pass
+f_object.close()
