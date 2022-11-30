@@ -2,4 +2,4 @@ import requests
 import json
 
 df = pd.read_csv("data.csv")
-print(dropped)
+dropped = df[['Source address', 'Destination address']].unstack().reset_index(drop=True)
