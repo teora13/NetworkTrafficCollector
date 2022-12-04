@@ -10,3 +10,6 @@ headers = ['IP', 'Total vendors', 'Country', 'Protocol type', 'Source port', 'De
 with open("result.csv", 'w') as file:
     dw = csv.DictWriter(file, delimiter=',', fieldnames=headers)
     dw.writeheader()
+    
+url = ('https://www.virustotal.com/api/v3/ip_addresses/' + str(ip))
+headers = {'accept': 'application/json','x-apikey': 'key'}
