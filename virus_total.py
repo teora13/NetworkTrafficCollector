@@ -13,3 +13,4 @@ with open("result.csv", 'w') as file:
     
 url = ('https://www.virustotal.com/api/v3/ip_addresses/' + str(ip))
 headers = {'accept': 'application/json','x-apikey': 'key'}
+response = json.loads((requests.get(url, headers=headers)).text)
