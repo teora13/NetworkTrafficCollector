@@ -11,6 +11,12 @@ with open("result.csv", 'w') as file:
     dw = csv.DictWriter(file, delimiter=',', fieldnames=headers)
     dw.writeheader()
     
-url = ('https://www.virustotal.com/api/v3/ip_addresses/' + str(ip))
-headers = {'accept': 'application/json','x-apikey': 'key'}
-response = json.loads((requests.get(url, headers=headers)).text)
+for ip in dropped:
+    url = ('https://www.virustotal.com/api/v3/ip_addresses/' + str(ip))
+    headers = {
+        'accept': 'application/json',
+        'x-apikey': 'key'}
+    response = json.loads((requests.get(url, headers=headers)).text)
+    find_malicious = (json.dumps(response['data']['attributes']['last_analysis_stats']['malicious'], indent=4))
+
+
