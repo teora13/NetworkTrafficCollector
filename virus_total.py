@@ -20,6 +20,8 @@ for ip in dropped:
     find_malicious = (json.dumps(response['data']['attributes']['last_analysis_stats']['malicious'], indent=4))
     if find_malicious == '1':
         country = response['data']['attributes']['country']
+        vendors = len(response['data']['attributes']['last_analysis_results'])
+        df_records = df[df['Source address'] == ip]
 
 
 
