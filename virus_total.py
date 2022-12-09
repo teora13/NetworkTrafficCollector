@@ -6,6 +6,7 @@ from csv import writer
 df = pd.read_csv("data.csv")
 dropped = df[['Source address', 'Destination address']].unstack().reset_index(drop=True)
 
+pbar = tqdm(total=len(dropped), desc='TOTAL PROCESSED IPS')
 headers = ['IP', 'Total vendors', 'Country', 'Protocol type', 'Source port', 'Destination port', 'Time']
 with open("result.csv", 'w') as file:
     dw = csv.DictWriter(file, delimiter=',', fieldnames=headers)
@@ -18,6 +19,7 @@ for ip in dropped:
         'x-apikey': 'key'}
     response = json.loads((requests.get(url, headers=headers)).text)
     find_malicious = (json.dumps(response['data']['attributes']['last_analysis_stats']['malicious'], indent=4))
+    pbar.update()
     if find_malicious == '1':
         country = response['data']['attributes']['country']
         vendors = len(response['data']['attributes']['last_analysis_results'])
