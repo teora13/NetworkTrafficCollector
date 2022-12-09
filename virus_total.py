@@ -18,5 +18,8 @@ for ip in dropped:
         'x-apikey': 'key'}
     response = json.loads((requests.get(url, headers=headers)).text)
     find_malicious = (json.dumps(response['data']['attributes']['last_analysis_stats']['malicious'], indent=4))
+    if find_malicious == '1':
+        country = response['data']['attributes']['country']
+
 
 
