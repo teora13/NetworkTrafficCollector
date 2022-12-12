@@ -28,6 +28,5 @@ for ip in dropped:
             df_protocol = row['Protocol type']
             df_source_port = row['Source port']
             df_dest_post = row['Destination port']
-
-
+            df_time = row['Time']
 
