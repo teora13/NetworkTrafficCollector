@@ -24,6 +24,10 @@ for ip in dropped:
         country = response['data']['attributes']['country']
         vendors = len(response['data']['attributes']['last_analysis_results'])
         df_records = df[df['Source address'] == ip]
+        for index, row in df_records.iterrows():
+            df_protocol = row['Protocol type']
+            df_source_port = row['Source port']
+            df_dest_post = row['Destination port']
 
 
 
