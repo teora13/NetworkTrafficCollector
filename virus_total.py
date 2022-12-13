@@ -29,4 +29,8 @@ for ip in dropped:
             df_source_port = row['Source port']
             df_dest_post = row['Destination port']
             df_time = row['Time']
+        with open('result.csv', 'a', newline='') as f_object:
+            writer_object = writer(f_object)
+            writer_object.writerows(zip([ip], [vendors], [country], [df_protocol], [df_source_port], [df_dest_post], [df_time]))
+    sleep(5)
 
