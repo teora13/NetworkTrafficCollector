@@ -2,6 +2,7 @@ import requests
 import json
 import csv
 from csv import writer
+import pandas as pd
 
 df = pd.read_csv("data.csv")
 dropped = df[['Source address', 'Destination address']].unstack().reset_index(drop=True)
