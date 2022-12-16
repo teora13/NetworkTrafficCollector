@@ -3,6 +3,7 @@ import json
 import csv
 from csv import writer
 import pandas as pd
+from time import sleep
 
 df = pd.read_csv("data.csv")
 dropped = df[['Source address', 'Destination address']].unstack().reset_index(drop=True)
