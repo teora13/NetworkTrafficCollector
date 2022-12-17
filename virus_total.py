@@ -4,16 +4,17 @@ import csv
 from csv import writer
 import pandas as pd
 from time import sleep
+from tqdm import tqdm
 
 df = pd.read_csv("data.csv")
 dropped = df[['Source address', 'Destination address']].unstack().reset_index(drop=True)
 
-pbar = tqdm(total=len(dropped), desc='TOTAL ADDRESSES')
 headers = ['IP', 'Total vendors', 'Country', 'Protocol type', 'Source port', 'Destination port', 'Time']
 with open("result.csv", 'w') as file:
     dw = csv.DictWriter(file, delimiter=',', fieldnames=headers)
     dw.writeheader()
     
+pbar = tqdm(total=len(dropped), desc='TOTAL ADDRESSES')    
 for ip in dropped:
     url = ('https://www.virustotal.com/api/v3/ip_addresses/' + str(ip))
     headers = {
