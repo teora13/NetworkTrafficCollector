@@ -6,9 +6,11 @@ import pandas as pd
 from time import sleep
 from tqdm import tqdm
 
+# opens created csv file, drops duplicates and sorts all records by ips
 df = pd.read_csv("data.csv")
-dropped = df[['Source address', 'Destination address']].unstack().reset_index(drop=True)
+dropped = df[['Source address', 'Destination address']].unstack().reset_index(drop=True).drop_duplicates()
 
+# creates a new csv file with headers
 headers = ['IP', 'Total vendors', 'Country', 'Protocol type', 'Source port', 'Destination port', 'Time']
 with open("result.csv", 'w') as file:
     dw = csv.DictWriter(file, delimiter=',', fieldnames=headers)
