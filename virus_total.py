@@ -6,7 +6,7 @@ import pandas as pd
 from time import sleep
 from tqdm import tqdm
 
-# opens created csv file, drops duplicates and sorts all records by ips
+# opens created csv file, drops ip duplicates and sorts them
 df = pd.read_csv("data.csv")
 dropped = df[['Source address', 'Destination address']].unstack().reset_index(drop=True).drop_duplicates()
 
@@ -15,7 +15,8 @@ headers = ['IP', 'Total vendors', 'Country', 'Protocol type', 'Source port', 'De
 with open("result.csv", 'w') as file:
     dw = csv.DictWriter(file, delimiter=',', fieldnames=headers)
     dw.writeheader()
-    
+
+# tqdm to show progress 
 pbar = tqdm(total=len(dropped), desc='TOTAL ADDRESSES')    
 for ip in dropped:
     url = ('https://www.virustotal.com/api/v3/ip_addresses/' + str(ip))
