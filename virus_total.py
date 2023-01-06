@@ -17,13 +17,17 @@ with open("result.csv", 'w') as file:
     dw.writeheader()
 
 # tqdm to show progress 
-pbar = tqdm(total=len(dropped), desc='TOTAL ADDRESSES')    
+pbar = tqdm(total=len(dropped), desc='TOTAL ADDRESSES') 
+
+# sends an each record in table to the virustotal website
 for ip in dropped:
     url = ('https://www.virustotal.com/api/v3/ip_addresses/' + str(ip))
     headers = {
         'accept': 'application/json',
         'x-apikey': 'key'}
     response = json.loads((requests.get(url, headers=headers)).text)
+    
+# checks if value "malicious" == true
     find_malicious = (json.dumps(response['data']['attributes']['last_analysis_stats']['malicious'], indent=4))
     pbar.update()
     if find_malicious == '1':
