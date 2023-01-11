@@ -27,7 +27,7 @@ for ip in dropped:
         'x-apikey': 'key'}
     response = json.loads((requests.get(url, headers=headers)).text)
     
-# checks if value "malicious" == true
+# if value "malicious" == true takes additional info about this ip
     find_malicious = (json.dumps(response['data']['attributes']['last_analysis_stats']['malicious'], indent=4))
     pbar.update()
     if find_malicious == '1':
@@ -39,6 +39,7 @@ for ip in dropped:
             df_source_port = row['Source port']
             df_dest_post = row['Destination port']
             df_time = row['Time']
+# create a new file with final results
         with open('result.csv', 'a', newline='') as f_object:
             writer_object = writer(f_object)
             writer_object.writerows(zip([ip], [vendors], [country], [df_protocol], [df_source_port], [df_dest_post], [df_time]))
