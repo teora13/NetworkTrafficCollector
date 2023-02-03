@@ -6,7 +6,7 @@ import pandas as pd
 from time import sleep
 from tqdm import tqdm
 
-# opens created csv file, drops ip duplicates and sorts them
+# opens created csv file, drops IPs duplicates and sorts them
 df = pd.read_csv("data.csv")
 dropped = df[['Source address', 'Destination address']].unstack().reset_index(drop=True).drop_duplicates()
 
@@ -27,7 +27,7 @@ for ip in dropped:
         'x-apikey': 'key'}
     response = json.loads((requests.get(url, headers=headers)).text)
     
-# if value "malicious" == true takes additional info about this ip
+# if value "malicious" == true than requests additional info about this IP
     find_malicious = (json.dumps(response['data']['attributes']['last_analysis_stats']['malicious'], indent=4))
     pbar.update()
     if find_malicious == '1':
