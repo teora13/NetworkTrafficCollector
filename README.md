@@ -6,6 +6,8 @@
 
 > traffic.py - сreates a csv file with the required headers, then collects all incoming and outgoing traffic.
 
+![sc02.jpg.png](https://github.com/teora13/NetworkTrafficCollector/blob/main/images/sc02.jpg.png)
+
 
 > virus_total.py - makes sorting in the file by ip addresses, removing duplicates. 
 
