@@ -16,6 +16,6 @@
 
 > makes an api request to www.virustotal.com to check ip addresses.
 
-> creates a new file with processing results
+> creates a new file with find resultes
 
 ![sc03.jpg.png](https://github.com/teora13/NetworkTrafficCollector/blob/main/images/sc03.jpg.png)
