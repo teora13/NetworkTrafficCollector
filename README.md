@@ -11,6 +11,7 @@
 
 **virus_total.py** 
 > makes sorting in the file by ip addresses, removing duplicates. 
+> implemented progress bar in the command line (tqdm).
 
 ![sc01.jpg](https://github.com/teora13/NetworkTrafficCollector/blob/main/images/sc01.jpg)
 
