@@ -4,7 +4,7 @@
 
 
 **traffic.py**
-> сreates a csv file with the required headers, then collects all incoming and outgoing traffic.
+> сreates a csv file with the required headers, then collects all incoming and outgoing traffic (protocols, ips, ports, time)
 
 ![sc02.jpg.png](https://github.com/teora13/NetworkTrafficCollector/blob/main/images/sc02.jpg.png)
 
